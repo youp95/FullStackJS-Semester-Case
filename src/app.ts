@@ -16,10 +16,9 @@ app.use("/",(req,res,next)=>{
 app.use(express.json())
 //let userAPIRouter = require('./routes/userApi');
 let userAPIRouter = require('./routes/userApiDB');
-let gameAPIRouter = require('./routes/gameAPI');
-
-
 app.use("/api/users",userAPIRouter);
+
+let gameAPIRouter = require('./routes/gameAPI');
 app.use("/gameapi",gameAPIRouter);
 
 app.get("/api/dummy", (req, res) => {
@@ -28,7 +27,7 @@ app.get("/api/dummy", (req, res) => {
 
 app.use(function (req, res, next) {
   if(req.originalUrl.startsWith("/api")){
-      res.status(404).json({code:404, msg:"this API does not contanin this endpoint"})
+      res.status(404).json({code:404, msg:"this API does not contain this endpoint"})
   }
   next()
 })
